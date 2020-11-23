@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from './shared/user-name.validator';
+import { passwordValidator } from './shared/password.validator';
 //import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -24,7 +25,7 @@ export class AppComponent {
       city: [''],
       state: ['']
     })
-  });
+  },{validator: passwordValidator});
   // registrationForm=new FormGroup({
   //   userName:new FormControl('Sayed'),
   //   password:new FormControl(''),
@@ -51,7 +52,7 @@ export class AppComponent {
     this.registrationForm.patchValue({
       userName: 'Al Zawad',
       password: 'test',
-      confirmPassword: 'test',
+      confirmPassword: 'test3',
     })
   }
 }
