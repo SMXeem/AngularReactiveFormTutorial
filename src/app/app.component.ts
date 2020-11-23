@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 //import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,13 +9,16 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AppComponent {
   title = 'AngularReactiveFormTutorial';
+  get userName(){
+    return this.registrationForm.get('userName');
+  }
 
   constructor(private formB: FormBuilder){}
 
   registrationForm=this.formB.group({
-    userName: ['Sayed'],
-    password: ['Sayed'],
-    confirmPassword: ['Sayed'],
+    userName: ['Sayed', [Validators.required,Validators.minLength(6)]],
+    password: ['test'],
+    confirmPassword: ['test'],
     address: this.formB.group({
       city: [''],
       state: ['']
