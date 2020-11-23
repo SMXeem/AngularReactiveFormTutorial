@@ -79,9 +79,19 @@ export class AppComponent implements OnInit{
 
   loadPatchData(){
     this.registrationForm.patchValue({
-      userName: 'Al Zawad',
+      userName: 'Sayed Al Zawad',
       password: 'test',
-      confirmPassword: 'test3',
+      confirmPassword: 'test',
+      email:'',
+      subscribe: false,
+      address: {
+        city:'Dhaka',
+        state:'Mohammadpur'
+      }
     })
+  }
+
+  onSubmit(){
+    console.log(this.registrationForm.value);
   }
 }
