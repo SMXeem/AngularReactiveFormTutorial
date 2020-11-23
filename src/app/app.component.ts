@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { forbiddenNameValidator } from './shared/user-name.validator';
 import { passwordValidator } from './shared/password.validator';
 //import { FormControl, FormGroup } from '@angular/forms';
@@ -18,6 +18,12 @@ export class AppComponent implements OnInit{
   get email(){
     return this.registrationForm.get('email');
   }
+  get alternateEmails(){
+    return this.registrationForm.get('alternateEmails') as FormArray;
+  }
+  addAlternateEmails(){
+    this.alternateEmails.push(this.formB.control(''));
+  }
 
   constructor(private formB: FormBuilder){}
 
@@ -31,7 +37,8 @@ export class AppComponent implements OnInit{
       address: this.formB.group({
         city: [''],
         state: ['']
-      })
+      }),
+      alternateEmails: this.formB.array([])
     },{validator: passwordValidator});
     this.registrationForm.get('subscribe').valueChanges
       .subscribe(checkedValue => {
