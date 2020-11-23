@@ -17,4 +17,24 @@ export class AppComponent {
       state:new FormControl(''),
     })
   });
+
+  loadSetData(){
+    this.registrationForm.setValue({
+      userName: 'Sayed Al Zawad',
+      password: 'test',
+      confirmPassword: 'test',
+      address: {
+        city:'Dhaka',
+        state:'Mohammadpur'
+      }
+    })
+  }
+
+  loadPatchData(){
+    this.registrationForm.patchValue({
+      userName: 'Al Zawad',
+      password: 'test',
+      confirmPassword: 'test',
+    })
+  }
 }
