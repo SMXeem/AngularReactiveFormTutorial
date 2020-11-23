@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+//import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,27 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'AngularReactiveFormTutorial';
-  registrationForm=new FormGroup({
-    userName:new FormControl('Sayed'),
-    password:new FormControl(''),
-    confirmPassword:new FormControl(''),
-    address:new FormGroup({
-      city:new FormControl(''),
-      state:new FormControl(''),
+
+  constructor(private formB: FormBuilder){}
+
+  registrationForm=this.formB.group({
+    userName: ['Sayed'],
+    password: ['Sayed'],
+    confirmPassword: ['Sayed'],
+    address: this.formB.group({
+      city: [''],
+      state: ['']
     })
   });
+  // registrationForm=new FormGroup({
+  //   userName:new FormControl('Sayed'),
+  //   password:new FormControl(''),
+  //   confirmPassword:new FormControl(''),
+  //   address:new FormGroup({
+  //     city:new FormControl(''),
+  //     state:new FormControl(''),
+  //   })
+  // });
 
   loadSetData(){
     this.registrationForm.setValue({
